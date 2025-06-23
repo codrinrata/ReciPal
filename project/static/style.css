@@ -1,0 +1,256 @@
+/* ====== BASE LAYOUT ====== */
+
+/* Ensure full height and remove default margin */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body styling with light mode defaults */
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: var(--user-font-size, 16px);
+  padding-top: 4rem; /* Space for fixed logo */
+}
+
+/* Main container flex area */
+#main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1rem;
+}
+
+
+/* ====== LOGO POSITIONING ====== */
+
+#logo {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 9999;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+body.dark-mode #logo {
+  color: #ccc;
+}
+
+body.high-contrast #logo {
+  color: #000 !important;
+}
+
+body.high-contrast.dark-mode #logo {
+  color: #fff !important;
+}
+
+
+/* ====== CHAT BOX AND MESSAGES ====== */
+
+.chat-box {
+  flex: 1;
+  flex-shrink: 0;
+  flex-grow: 1;
+  max-height: 70vh;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+}
+
+.chat-box.dark-mode {
+  background-color: #2a2a2a;
+}
+
+.message {
+  margin-bottom: 1rem;
+}
+
+.message.user {
+  text-align: right;
+}
+
+.message.bot {
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+
+/* ====== TYPING ANIMATION ====== */
+
+.typing-dots span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin: 0 2px;
+  background-color: #aaa;
+  border-radius: 50%;
+  animation: bounce 1.2s infinite ease-in-out both;
+}
+
+.typing-dots span:nth-child(1) { animation-delay: 0s; }
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+
+/* ====== FORM AND INPUT AREAS ====== */
+
+.input-group {
+  margin-top: auto;
+  margin-bottom: 1rem;
+}
+
+.form-check {
+  margin-bottom: 10px;
+}
+
+.dropdown-menu label:hover {
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+
+/* ====== CODE BLOCKS ====== */
+
+pre {
+  background-color: #2d2d2d;
+  color: #f8f8f2;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+.dark-mode pre {
+  background-color: #1f1f1f;
+  color: #c8c8c8;
+}
+
+
+/* ====== DARK MODE STYLES ====== */
+
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .btn-outline-success,
+body.dark-mode .btn-outline-danger {
+  background-color: #343a40;
+  border-color: #343a40;
+  color: #e0e0e0;
+}
+
+body.dark-mode .btn-outline-success:hover,
+body.dark-mode .btn-outline-danger:hover {
+  background-color: #495057;
+  border-color: #495057;
+}
+
+body.dark-mode .form-control {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+
+
+/* ====== HIGH CONTRAST MODES ====== */
+
+.high-contrast {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+body.high-contrast:not(.dark-mode) {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+body.high-contrast.dark-mode {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+body.high-contrast.dark-mode #message::placeholder,
+body.high-contrast.dark-mode #emailInput::placeholder
+{
+  color: #fff !important;
+}
+
+body.dark-mode #message::placeholder,
+body.dark-mode #emailInput::placeholder
+{
+  color: #c8c8c8 !important;
+}
+
+/* Controls and inputs in high contrast light mode */
+body.high-contrast:not(.dark-mode) .btn,
+body.high-contrast:not(.dark-mode) .dropdown-menu,
+body.high-contrast:not(.dark-mode) .form-control,
+body.high-contrast:not(.dark-mode) .form-check-label,
+body.high-contrast:not(.dark-mode) .dropdown-toggle,
+body.high-contrast:not(.dark-mode) .input-group,
+body.high-contrast:not(.dark-mode) .input-group-text,
+body.high-contrast:not(.dark-mode) .dropdown-item,
+body.high-contrast:not(.dark-mode) .chat-box {
+  background-color: #fff !important;
+  color: #000 !important;
+  border-color: #000 !important;
+}
+
+body.high-contrast:not(.dark-mode) #message::placeholder,
+body.high-contrast:not(.dark-mode) #emailInput::placeholder
+{
+  color: #000 !important;
+}
+
+/* Controls and inputs in high contrast dark mode */
+body.high-contrast.dark-mode .btn,
+body.high-contrast.dark-mode .dropdown-menu,
+body.high-contrast.dark-mode .form-control,
+body.high-contrast.dark-mode .form-check-label,
+body.high-contrast.dark-mode .dropdown-toggle,
+body.high-contrast.dark-mode .input-group,
+body.high-contrast.dark-mode .input-group-text,
+body.high-contrast.dark-mode .dropdown-item,
+body.high-contrast.dark-mode .chat-box {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #fff !important;
+}
+
+/* Highlight key buttons in both light & dark high contrast */
+body.high-contrast:not(.dark-mode) .btn-primary,
+body.high-contrast:not(.dark-mode) #mode-toggle,
+body.high-contrast:not(.dark-mode) #accessibility-toggle,
+body.high-contrast:not(.dark-mode) #tts-toggle,
+body.high-contrast:not(.dark-mode) #handsfree-toggle,
+body.high-contrast.dark-mode #emailbutton {
+  background-color: #000 !important;
+  color: #fff !important;
+  border: 2px solid #000 !important;
+}
+
+body.high-contrast.dark-mode .btn-primary,
+body.high-contrast.dark-mode #mode-toggle,
+body.high-contrast.dark-mode #accessibility-toggle,
+body.high-contrast.dark-mode #tts-toggle,
+body.high-contrast.dark-mode #handsfree-toggle,
+body.high-contrast.dark-mode #emailbutton {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 2px solid #fff !important;
+}
